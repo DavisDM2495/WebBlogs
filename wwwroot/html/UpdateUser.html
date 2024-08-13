@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Update User</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-900 text-gray-100">
+    <nav class="bg-blue-600 p-4 shadow-lg">
+      <ul class="flex justify-center space-x-4">
+        <li>
+          <a href="/" class="text-white hover:text-blue-200">Home</a>
+        </li>
+        <li>
+          <a href="/users" class="text-white hover:text-blue-200">All Users</a>
+        </li>
+        <li>
+          <a href="/get-user" class="text-white hover:text-blue-200"
+            >Get User</a
+          >
+        </li>
+        <li>
+          <a href="/create-user" class="text-white hover:text-blue-200"
+            >Create User</a
+          >
+        </li>
+        <li>
+          <a href="/update-user" class="text-white hover:text-blue-200"
+            >Update User</a
+          >
+        </li>
+        <li>
+          <a href="/delete-user" class="text-white hover:text-blue-200"
+            >Delete User</a
+          >
+        </li>
+      </ul>
+    </nav>
+
+    <div class="flex flex-col justify-center items-center mt-10 bg-gray-900">
+      <div
+        class="text-center bg-gray-800 p-10 rounded-lg shadow-lg w-full max-w-lg"
+      >
+        <h2 class="text-4xl font-bold text-white mb-4">Update User</h2>
+        <div class="mb-4">
+          <label for="userSelect" class="block text-gray-400"
+            >Select User</label
+          >
+          <select
+            id="userSelect"
+            onchange="populateForm()"
+            class="mt-1 p-2 w-full rounded-lg bg-gray-700 text-gray-200"
+          >
+            <option value="">Select a user</option>
+          </select>
+        </div>
+        <form
+          id="userForm"
+          onsubmit="handleFormSubmit(event)"
+          class="space-y-4"
+        >
+          <input type="hidden" id="id" name="id" />
+          <div>
+            <label for="firstName" class="block text-gray-400"
+              >First Name</label
+            >
+            <input
+              type="text"
+              id="firstName"
+              name="firstName"
+              class="mt-1 p-2 w-full rounded-lg bg-gray-700 text-gray-200"
+            />
+          </div>
+          <div>
+            <label for="lastName" class="block text-gray-400">Last Name</label>
+            <input
+              type="text"
+              id="lastName"
+              name="lastName"
+              class="mt-1 p-2 w-full rounded-lg bg-gray-700 text-gray-200"
+            />
+          </div>
+          <div>
+            <label for="email" class="block text-gray-400">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              class="mt-1 p-2 w-full rounded-lg bg-gray-700 text-gray-200"
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            class="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-500"
+          >
+            Update User
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      let users = [];
+      const userForm = document.getElementById("userForm");
+      const userSelect = document.getElementById("userSelect");
+
+      async function fetchUsers() {
+        
+      }
+
+      function populateDropdown(users) {
+       
+      }
+
+      function populateForm() {
+        
+      }
+
+      async function handleFormSubmit(event) {
+        event.preventDefault();
+        
+      }
+
+      function getFormData() {
+        
+      }
+
+      async function updateUser(id, user) {
+        return await fetch(`/api/users/${id}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(user),
+        });
+      }
+      
+      function resetForm() {
+        userForm.reset();
+        userSelect.selectedIndex = 0;
+      }      
+			
+			resetForm();
+      fetchUsers();
+    </script>
+  </body>
+</html>

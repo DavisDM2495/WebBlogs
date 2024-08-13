@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Get Users</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-900 text-gray-100">
+    <nav class="bg-blue-600 p-4 shadow-lg">
+      <ul class="flex justify-center space-x-4">
+        <li>
+          <a href="/" class="text-white hover:text-blue-200">Home</a>
+        </li>
+        <li>
+          <a href="/users" class="text-white hover:text-blue-200">All Users</a>
+        </li>
+        <li>
+          <a href="/get-user" class="text-white hover:text-blue-200"
+            >Get User</a
+          >
+        </li>
+        <li>
+          <a href="/create-user" class="text-white hover:text-blue-200"
+            >Create User</a
+          >
+        </li>
+        <li>
+          <a href="/update-user" class="text-white hover:text-blue-200"
+            >Update User</a
+          >
+        </li>
+        <li>
+          <a href="/delete-user" class="text-white hover:text-blue-200"
+            >Delete User</a
+          >
+        </li>
+      </ul>
+    </nav>
+
+    <div class="flex flex-col justify-center items-center mt-10 bg-gray-900">
+      <div
+        class="text-center bg-gray-800 p-10 rounded-lg shadow-lg w-full max-w-lg"
+      >
+        <h2 class="text-4xl font-bold text-white mb-4">User List</h2>
+        <div
+          id="usersData"
+          class="mt-10 bg-gray-800 p-5 rounded-lg shadow-lg w-full text-left"
+        >
+          <!-- Users data will be displayed here -->
+        </div>
+      </div>
+    </div>
+
+    <script>
+      async function fetchUsers() {
+        try {
+                const response = await fetch('GET /users');
+                if (!response.ok) {
+                    throw new Error('Not Valid');
+                }
+                const users = await response.json();
+                displayusers(users);
+            } catch (error) {
+                console.error('Error fetching users:', error);
+            }
+      }
+      
+
+      function displayUsers(users) {
+        const userContainer = document.getElementById('usersData');
+        userContainer.innerHTML = '';
+
+            users.forEach(user => {
+                const userCard = createUserCard(user);
+                userContainer.appendChild(userCard);
+            });
+      }
+
+      function createUserCard(user) {
+        const card = document.createElement('div');
+            card.className = 'user-card';
+
+            const userName = document.createElement('h2');
+            userName.textContent = user.name;
+
+            const userOwner = document.createElement('p');
+            userOwner.textContent = `Owner: ${user.owner ? user.owner.name : 'Unknown'}`;
+
+            card.appendChild(userName);
+            card.appendChild(userOwner);
+
+            return card;
+      }
+      fetchUsers();
+    </script>
+  </body>
+</html>
